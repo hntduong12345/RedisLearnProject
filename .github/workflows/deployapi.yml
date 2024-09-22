@@ -1,0 +1,32 @@
+# github action to deploy interior-coffee api to azure
+
+name: Deploy Test API
+
+on:
+  workflow_dispatch:
+
+env:
+  AZURE_WEBAPP_NAME: "test-api"
+
+# define jobs
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Install dependencies
+        run: dotnet restore ./RedisAndUoW/RedisAndUoW.csproj
+
+      - name: Build
+        run: dotnet build ./RedisAndUoW/RedisAndUoW.csproj --configuration Release --no-restore
+
+      # publish code
+      - name: Publish
+        run: dotnet publish ./RedisAndUoW/RedisAndUoW.csproj --configuration Release --output ./publish
+
+      # deploy
