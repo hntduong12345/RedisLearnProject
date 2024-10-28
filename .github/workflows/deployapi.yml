@@ -3,6 +3,9 @@
 name: Deploy Test API
 
 on:
+  push: 
+    branches:
+      - test
   workflow_dispatch:
 
 env:
