@@ -29,4 +29,10 @@ jobs:
       - name: Publish
         run: dotnet publish ./RedisAndUoW/RedisAndUoW.csproj --configuration Release --output ./publish
 
-      # deploy
+      # deploy to Azure
+      - name: Deploy API to Azure
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEPAPP_NAME }}
+          # publish-profile (currently not setup)
+          package: ./publish
