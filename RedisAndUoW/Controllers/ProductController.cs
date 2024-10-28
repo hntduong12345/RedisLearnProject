@@ -10,7 +10,7 @@ namespace RedisAndUoW.Controllers
         [HttpGet]
         public async Task<IActionResult> Test()
         {
-            return Ok();
+            return Ok("Im fine");
         }
     }
 }
