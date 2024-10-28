@@ -7,5 +7,10 @@ namespace RedisAndUoW.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
+        [HttpGet]
+        public async Task<IActionResult> Test()
+        {
+            return Ok();
+        }
     }
 }
